@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-#include "inner.h"
+#include "../inner.h"
 
 /* see inner.h */
 uint32_t

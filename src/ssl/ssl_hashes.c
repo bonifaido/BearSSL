@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-#include "inner.h"
+#include "../inner.h"
 
 /* see inner.h */
 int
@@ -42,5 +42,6 @@ br_ssl_choose_hash(unsigned bf)
 			return x;
 		}
 	}
+
 	return 0;
 }

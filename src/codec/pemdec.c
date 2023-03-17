@@ -1,7 +1,6 @@
 /* Automatically generated code; do not modify directly. */
 
-#include <stddef.h>
-#include <stdint.h>
+#include <linux/types.h>
 
 typedef struct {
 	uint32_t *dp;
@@ -67,7 +66,7 @@ void br_pem_decoder_run(void *t0ctx);
 
 
 
-#include "inner.h"
+#include "../inner.h"
 
 #define CTX   ((br_pem_decoder_context *)(void *)((unsigned char *)t0ctx - offsetof(br_pem_decoder_context, cpu)))
 
