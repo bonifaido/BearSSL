@@ -26,7 +26,7 @@
 # utility.
 
 # Load generic default.
-include mk/Defaults.mk
+include $(PWD)/mk/Defaults.mk
 
 # Path separator.
 P = /
@@ -34,5 +34,5 @@ P = /
 # Default configuration is 'Unix' (native build on a Unix-like system).
 CONF = Unix
 
-include conf/$(CONF).mk
-include mk/Rules.mk
+include $(PWD)/conf/$(CONF).mk
+include $(PWD)/mk/Rules.mk
