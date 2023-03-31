@@ -10,6 +10,7 @@ EXPORT_SYMBOL(br_sslio_read);
 EXPORT_SYMBOL(br_sslio_write_all);
 EXPORT_SYMBOL(br_sslio_flush);
 EXPORT_SYMBOL(br_sslio_close);
+EXPORT_SYMBOL(br_ssl_engine_close);
 
 static int __init bearssl_init(void)
 {
