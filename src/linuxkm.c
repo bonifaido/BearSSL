@@ -2,6 +2,7 @@
 #include "inner.h"
 
 EXPORT_SYMBOL(br_ssl_server_init_full_rsa);
+EXPORT_SYMBOL(br_ssl_server_init_full_ec);
 EXPORT_SYMBOL(br_ssl_client_init_full);
 EXPORT_SYMBOL(br_ssl_engine_set_buffer);
 EXPORT_SYMBOL(br_ssl_server_reset);
