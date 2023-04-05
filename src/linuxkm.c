@@ -6,6 +6,7 @@ EXPORT_SYMBOL(br_ssl_server_init_full_ec);
 EXPORT_SYMBOL(br_ssl_client_init_full);
 EXPORT_SYMBOL(br_ssl_engine_set_buffer);
 EXPORT_SYMBOL(br_ssl_server_reset);
+EXPORT_SYMBOL(br_ssl_client_reset);
 EXPORT_SYMBOL(br_sslio_init);
 EXPORT_SYMBOL(br_sslio_read);
 EXPORT_SYMBOL(br_sslio_write_all);
