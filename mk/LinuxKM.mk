@@ -1,7 +1,7 @@
 # Set the path to the Kernel build utils.
 KBUILD=/lib/modules/$(shell uname -r)/build/
 
-ccflags-y += -Ofast -ffreestanding -march=native
+ccflags-y += -Ofast -ffreestanding
 ARCH := $(shell uname -m)
 ifeq ($(ARCH), aarch64)
 	ccflags-remove-y += -mgeneral-regs-only
