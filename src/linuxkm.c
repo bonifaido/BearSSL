@@ -13,6 +13,10 @@ EXPORT_SYMBOL(br_sslio_write_all);
 EXPORT_SYMBOL(br_sslio_flush);
 EXPORT_SYMBOL(br_sslio_close);
 EXPORT_SYMBOL(br_ssl_engine_close);
+EXPORT_SYMBOL(br_ssl_client_set_single_rsa);
+EXPORT_SYMBOL(br_rsa_pkcs1_sign_get_default);
+EXPORT_SYMBOL(br_x509_minimal_init_full);
+EXPORT_SYMBOL(br_ssl_engine_set_default_rsavrfy);
 
 static int __init bearssl_init(void)
 {
