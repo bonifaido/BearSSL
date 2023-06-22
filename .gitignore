@@ -4,3 +4,10 @@
 /testcrypto
 /testspeed
 /testx509
+*.cmd
+*.o
+*.ko
+*.mod*
+*.o.d
+*.order
+*.symvers

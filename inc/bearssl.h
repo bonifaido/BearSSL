@@ -25,8 +25,7 @@
 #ifndef BR_BEARSSL_H__
 #define BR_BEARSSL_H__
 
-#include <stddef.h>
-#include <stdint.h>
+#include <linux/types.h>
 
 /** \mainpage BearSSL API
  *
