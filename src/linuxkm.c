@@ -19,11 +19,10 @@ EXPORT_SYMBOL(br_x509_minimal_init_full);
 EXPORT_SYMBOL(br_ssl_engine_set_default_rsavrfy);
 EXPORT_SYMBOL(br_rsa_keygen_get_default);
 EXPORT_SYMBOL(br_hmac_drbg_init);
+EXPORT_SYMBOL(br_encode_rsa_pkcs8_der);
 EXPORT_SYMBOL(br_sha256_vtable);
 EXPORT_SYMBOL(br_rsa_compute_privexp_get_default);
 EXPORT_SYMBOL(br_prng_seeder_system);
-EXPORT_SYMBOL(br_encode_rsa_raw_der);
-EXPORT_SYMBOL(br_pem_encode);
 
 static int __init bearssl_init(void)
 {
