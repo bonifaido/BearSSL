@@ -4015,6 +4015,9 @@ void br_sslio_init(br_sslio_context *ctx,
 		const unsigned char *data, size_t len),
 	void *write_context);
 
+extern const int
+(*br_sslio_run_until)(br_sslio_context *ctx, unsigned target);
+
 /**
  * \brief Read some application data from a SSL connection.
  *

@@ -142,6 +142,10 @@ run_until(br_sslio_context *ctx, unsigned target)
 	}
 }
 
+/* expose run_until, we need it for MSG_PEEK */
+const int
+(*br_sslio_run_until)(br_sslio_context *ctx, unsigned target) = run_until;
+
 /* see bearssl_ssl.h */
 int
 br_sslio_read(br_sslio_context *ctx, void *dst, size_t len)
