@@ -1218,8 +1218,8 @@ br_x509_minimal_run(void *t0ctx)
 #if BR_USE_UNIX_TIME
 			time64_t x = ktime_get_real_seconds();
 
-			vd = (uint32_t)(x / 86400) + 719528;
-			vs = (uint32_t)(x % 86400);
+			vs = (uint32_t)do_div(x, 86400);
+			vd = (uint32_t)x + 719528;
 #elif BR_USE_WIN32_TIME
 			FILETIME ft;
 			uint64_t x;
