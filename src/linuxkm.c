@@ -28,6 +28,7 @@ EXPORT_SYMBOL(br_rsa_compute_privexp_get_default);
 EXPORT_SYMBOL(br_prng_seeder_system);
 EXPORT_SYMBOL(br_x509_decoder_init);
 EXPORT_SYMBOL(br_x509_decoder_push);
+EXPORT_SYMBOL(br_ssl_engine_set_suites);
 
 static int __init bearssl_init(void)
 {
