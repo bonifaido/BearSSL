@@ -7,6 +7,11 @@ ifeq ($(ARCH), aarch64)
 	ccflags-remove-y += -mgeneral-regs-only
 endif
 
+# Unset GCC compiler features if using CLANG as the compiler
+ifeq ($(LLVM),1)
+	KBUILD_CFLAGS := $(filter-out -fconserve-stack -Wno-maybe-uninitialized -Wno-alloc-size-larger-than, $(KBUILD_CFLAGS) $(ccflags-y))
+endif
+
 LD = ld
 VERBOSE := 1
 
