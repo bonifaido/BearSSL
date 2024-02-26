@@ -8,7 +8,7 @@ ifeq ($(ARCH), aarch64)
 endif
 
 LD = ld
-VERBOSE := 1
+VERBOSE ?= 0
 
 linux-km:
 	$(MAKE) -C $(KBUILD) M=$(PWD) V=$(VERBOSE) modules
