@@ -121,6 +121,8 @@ run_until(br_sslio_context *ctx, unsigned target)
 
 			buf = br_ssl_engine_recvrec_buf(ctx->engine, &len);
 			rlen = ctx->low_read(ctx->read_context, buf, len);
+			if (rlen == -ERESTARTSYS)
+				return rlen;
 			if (rlen < 0) {
 				br_ssl_engine_fail(ctx->engine, BR_ERR_IO);
 				return -1;
