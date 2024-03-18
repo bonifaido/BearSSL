@@ -583,10 +583,7 @@ typedef struct {
 	} bc;
 	br_ghash gh;
 	unsigned char iv[4];
-	union {
-		unsigned char k16[16];
-		unsigned char k32[32];
-	} key;
+	unsigned char key[32];
 	unsigned char h[16];
 #endif
 } br_sslrec_gcm_context;
