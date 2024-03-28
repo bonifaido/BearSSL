@@ -25,8 +25,7 @@
 #ifndef BR_BEARSSL_X509_H__
 #define BR_BEARSSL_X509_H__
 
-#include <stddef.h>
-#include <stdint.h>
+#include <linux/types.h>
 
 #include "bearssl_ec.h"
 #include "bearssl_hash.h"

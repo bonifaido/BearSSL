@@ -25,8 +25,7 @@
 #ifndef BR_BEARSSL_RSA_H__
 #define BR_BEARSSL_RSA_H__
 
-#include <stddef.h>
-#include <stdint.h>
+#include <linux/types.h>
 
 #include "bearssl_hash.h"
 #include "bearssl_rand.h"

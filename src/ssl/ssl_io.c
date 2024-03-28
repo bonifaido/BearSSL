@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-#include "inner.h"
+#include "../inner.h"
 
 /* see bearssl_ssl.h */
 void
@@ -121,13 +121,14 @@ run_until(br_sslio_context *ctx, unsigned target)
 
 			buf = br_ssl_engine_recvrec_buf(ctx->engine, &len);
 			rlen = ctx->low_read(ctx->read_context, buf, len);
-			if (rlen < 0) {
-				br_ssl_engine_fail(ctx->engine, BR_ERR_IO);
-				return -1;
+			if (rlen <= 0)
+			{
+				if (rlen != -ERESTARTSYS && rlen != -EAGAIN && rlen != -EWOULDBLOCK)
+					br_ssl_engine_fail(ctx->engine, BR_ERR_IO);
+				return rlen;
 			}
-			if (rlen > 0) {
-				br_ssl_engine_recvrec_ack(ctx->engine, rlen);
-			}
+
+			br_ssl_engine_recvrec_ack(ctx->engine, rlen);
 			continue;
 		}
 
@@ -141,6 +142,10 @@ run_until(br_sslio_context *ctx, unsigned target)
 		br_ssl_engine_flush(ctx->engine, 0);
 	}
 }
+
+/* expose run_until, we need it for MSG_PEEK */
+int
+(*br_sslio_run_until)(br_sslio_context *ctx, unsigned target) = run_until;
 
 /* see bearssl_ssl.h */
 int

@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-#include "inner.h"
+#include "../inner.h"
 
 /*
  * GCM initialisation. This does everything except setting the vtable,
@@ -42,6 +42,7 @@ gen_gcm_init(br_sslrec_gcm_context *cc,
 	bc_impl->init(&cc->bc.vtable, key, key_len);
 	cc->gh = gh_impl;
 	memcpy(cc->iv, iv, sizeof cc->iv);
+	memcpy(cc->key, key, key_len);
 	memset(cc->h, 0, sizeof cc->h);
 	memset(tmp, 0, sizeof tmp);
 	bc_impl->run(&cc->bc.vtable, tmp, 0, cc->h, sizeof cc->h);

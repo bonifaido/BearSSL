@@ -1,7 +1,6 @@
 /* Automatically generated code; do not modify directly. */
 
-#include <stddef.h>
-#include <stdint.h>
+#include <linux/types.h>
 
 typedef struct {
 	uint32_t *dp;
@@ -67,13 +66,13 @@ void br_x509_minimal_run(void *t0ctx);
 
 
 
-#include "inner.h"
+#include "../inner.h"
 
 
 
 
 
-#include "inner.h"
+#include "../inner.h"
 
 /*
  * Implementation Notes
@@ -201,7 +200,7 @@ void br_x509_minimal_run(void *t0ctx);
  */
 
 #if BR_USE_UNIX_TIME
-#include <time.h>
+#include <linux/ktime.h>
 #endif
 
 #if BR_USE_WIN32_TIME
@@ -1217,7 +1216,7 @@ br_x509_minimal_run(void *t0ctx)
 		uint32_t vs = CTX->seconds;
 		if (vd == 0 && vs == 0) {
 #if BR_USE_UNIX_TIME
-			time_t x = time(NULL);
+			time64_t x = ktime_get_real_seconds();
 
 			vd = (uint32_t)(x / 86400) + 719528;
 			vs = (uint32_t)(x % 86400);
