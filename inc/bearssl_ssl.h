@@ -3953,8 +3953,9 @@ typedef struct {
 #ifndef BR_DOXYGEN_IGNORE
 	br_ssl_engine_context *engine;
 	int (*low_read)(void *read_context,
-		unsigned char *data, size_t len);
+		unsigned char *data, size_t len, int flags);
 	void *read_context;
+	int read_flags;
 	int (*low_write)(void *write_context,
 		const unsigned char *data, size_t len);
 	void *write_context;
@@ -4011,7 +4012,7 @@ typedef struct {
 void br_sslio_init(br_sslio_context *ctx,
 	br_ssl_engine_context *engine,
 	int (*low_read)(void *read_context,
-		unsigned char *data, size_t len),
+		unsigned char *data, size_t len, int flags),
 	void *read_context,
 	int (*low_write)(void *write_context,
 		const unsigned char *data, size_t len),

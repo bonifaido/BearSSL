@@ -29,7 +29,7 @@ void
 br_sslio_init(br_sslio_context *ctx,
 	br_ssl_engine_context *engine,
 	int (*low_read)(void *read_context,
-		unsigned char *data, size_t len),
+		unsigned char *data, size_t len, int flags),
 	void *read_context,
 	int (*low_write)(void *write_context,
 		const unsigned char *data, size_t len),
@@ -120,7 +120,7 @@ run_until(br_sslio_context *ctx, unsigned target)
 			int rlen;
 
 			buf = br_ssl_engine_recvrec_buf(ctx->engine, &len);
-			rlen = ctx->low_read(ctx->read_context, buf, len);
+			rlen = ctx->low_read(ctx->read_context, buf, len, ctx->read_flags);
 			if (rlen <= 0)
 			{
 				if (rlen != -ERESTARTSYS && rlen != -EAGAIN && rlen != -EWOULDBLOCK)
