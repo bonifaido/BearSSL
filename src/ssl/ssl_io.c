@@ -143,10 +143,6 @@ run_until(br_sslio_context *ctx, unsigned target)
 	}
 }
 
-/* expose run_until, we need it for MSG_PEEK */
-int
-(*br_sslio_run_until)(br_sslio_context *ctx, unsigned target) = run_until;
-
 /* see bearssl_ssl.h */
 int
 br_sslio_read(br_sslio_context *ctx, void *dst, size_t len)
@@ -157,8 +153,13 @@ br_sslio_read(br_sslio_context *ctx, void *dst, size_t len)
 	if (len == 0) {
 		return 0;
 	}
-	if (run_until(ctx, BR_SSL_RECVAPP) < 0) {
-		return -1;
+	int ret = run_until(ctx, BR_SSL_RECVAPP);
+	if (ret < 0) {
+		unsigned state = br_ssl_engine_current_state(ctx->engine);
+		if (state & BR_SSL_CLOSED) {
+			return 0;
+		}
+		return ret;
 	}
 	buf = br_ssl_engine_recvapp_buf(ctx->engine, &alen);
 	if (alen > len) {
