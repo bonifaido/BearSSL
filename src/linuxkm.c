@@ -37,6 +37,9 @@ EXPORT_SYMBOL(br_ssl_engine_recvapp_buf);
 EXPORT_SYMBOL(br_ssl_engine_recvapp_ack);
 EXPORT_SYMBOL(br_ssl_engine_sendapp_buf);
 EXPORT_SYMBOL(br_ssl_engine_sendapp_ack);
+EXPORT_SYMBOL(br_pem_decoder_init);
+EXPORT_SYMBOL(br_pem_decoder_event);
+EXPORT_SYMBOL(br_pem_decoder_push);
 
 static int __init bearssl_init(void)
 {
