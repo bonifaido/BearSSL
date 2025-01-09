@@ -26,6 +26,7 @@
 #define INNER_H__
 
 #include <linux/string.h>
+#include <linux/version.h>
 
 #include "config.h"
 #include "../inc/bearssl.h"
@@ -923,7 +924,7 @@ BIT_LENGTH(uint32_t x)
 	k += GT(x, 0x0001);
 	return k;
 }
-
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 11, 0)
 /*
  * Compute the minimum of x and y.
  */
@@ -941,7 +942,7 @@ MAX(uint32_t x, uint32_t y)
 {
 	return MUX(GT(x, y), x, y);
 }
-
+#endif
 /*
  * Multiply two 32-bit integers, with a 64-bit result. This default
  * implementation assumes that the basic multiplication operator
