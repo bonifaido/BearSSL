@@ -1,7 +1,11 @@
 # Set the path to the Kernel build utils.
 KBUILD=/lib/modules/$(shell uname -r)/build/
 
-ccflags-y += -Ofast -ffreestanding
+ccflags-y += -Ofast -ffreestanding -Wno-undef -Wno-error=frame-larger-than=
+CFLAGS_src/ssl/ssl_engine.o := -Wno-error=implicit-fallthrough=
+CFLAGS_src/int/i31_encode.o := -Wno-error=implicit-fallthrough=
+CFLAGS_src/int/i32_encode.o := -Wno-error=implicit-fallthrough=
+
 ARCH := $(shell uname -m)
 ifeq ($(ARCH), aarch64)
 	ccflags-remove-y += -mgeneral-regs-only

@@ -81,7 +81,9 @@ api_xoff(int curve, size_t *len)
  * In particular, such a value is less than twice the modulus p.
  */
 
+#ifndef BIT
 #define BIT(n)   ((uint64_t)1 << (n))
+#endif
 #define MASK48   (BIT(48) - BIT(0))
 #define MASK52   (BIT(52) - BIT(0))
 
