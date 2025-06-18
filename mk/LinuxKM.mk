@@ -1,5 +1,6 @@
 # Set the path to the Kernel build utils.
-KBUILD=/lib/modules/$(shell uname -r)/build/
+KVERSION ?= $(shell uname -r)
+KBUILD=/lib/modules/${KVERSION}/build/
 
 ccflags-y += -Ofast -ffreestanding -Wno-undef -Wno-error=frame-larger-than= -Wframe-larger-than=2048
 CFLAGS_src/ssl/ssl_engine.o := -Wno-error=implicit-fallthrough=
