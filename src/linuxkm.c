@@ -41,6 +41,14 @@ EXPORT_SYMBOL(br_pem_decoder_init);
 EXPORT_SYMBOL(br_pem_decoder_event);
 EXPORT_SYMBOL(br_pem_decoder_push);
 EXPORT_SYMBOL(br_pem_encode);
+EXPORT_SYMBOL(br_ec_compute_pub);
+EXPORT_SYMBOL(br_ec_keygen);
+EXPORT_SYMBOL(br_ec_get_default);
+EXPORT_SYMBOL(br_encode_ec_pkcs8_der);
+EXPORT_SYMBOL(br_ssl_engine_set_default_ecdsa);
+EXPORT_SYMBOL(br_ssl_client_set_single_ec);
+EXPORT_SYMBOL(br_ecdsa_sign_asn1_get_default);
+EXPORT_SYMBOL(br_ecdsa_sign_raw_get_default);
 
 static int __init bearssl_init(void)
 {
