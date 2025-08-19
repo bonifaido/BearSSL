@@ -27,7 +27,6 @@ EXPORT_SYMBOL(br_prng_seeder_system);
 EXPORT_SYMBOL(br_x509_decoder_init);
 EXPORT_SYMBOL(br_x509_decoder_push);
 EXPORT_SYMBOL(br_ssl_engine_set_suites);
-EXPORT_SYMBOL(br_sslrec_out_clear_vtable);
 EXPORT_SYMBOL(br_ssl_engine_current_state);
 EXPORT_SYMBOL(br_ssl_engine_recvrec_buf);
 EXPORT_SYMBOL(br_ssl_engine_recvrec_ack);
@@ -63,3 +62,4 @@ module_init(bearssl_init);
 module_exit(bearssl_exit);
 
 MODULE_LICENSE("Dual MIT/GPL");
+MODULE_AUTHOR("Riptides Labs, Inc <tech@riptides.io>");
