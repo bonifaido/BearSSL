@@ -48,6 +48,14 @@ EXPORT_SYMBOL(br_ssl_engine_set_default_ecdsa);
 EXPORT_SYMBOL(br_ssl_client_set_single_ec);
 EXPORT_SYMBOL(br_ecdsa_sign_asn1_get_default);
 EXPORT_SYMBOL(br_ecdsa_sign_raw_get_default);
+EXPORT_SYMBOL(br_hmac_key_init);
+EXPORT_SYMBOL(br_hmac_init);
+EXPORT_SYMBOL(br_hmac_update);
+EXPORT_SYMBOL(br_hmac_out);
+EXPORT_SYMBOL(br_rsa_i62_pkcs1_vrfy);
+EXPORT_SYMBOL(br_sha256_init);
+EXPORT_SYMBOL(br_sha256_update);
+EXPORT_SYMBOL(br_sha256_out);
 
 static int __init bearssl_init(void)
 {

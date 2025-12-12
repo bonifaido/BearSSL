@@ -1216,7 +1216,9 @@ br_x509_minimal_run(void *t0ctx)
 		uint32_t vs = CTX->seconds;
 		if (vd == 0 && vs == 0) {
 #if BR_USE_UNIX_TIME
-			time64_t x = ktime_get_real_seconds();
+			struct timespec64 ts;
+			ktime_get_real_ts64(&ts);
+			time64_t x = ts.tv_sec;
 
 			vd = (uint32_t)(x / 86400) + 719528;
 			vs = (uint32_t)(x % 86400);
