@@ -71,3 +71,5 @@ module_exit(bearssl_exit);
 
 MODULE_LICENSE("Dual MIT/GPL");
 MODULE_AUTHOR("Riptides Labs, Inc <tech@riptides.io>");
+MODULE_DESCRIPTION("The BearSSL SSL library integrated into the Linux kernel");
+MODULE_VERSION("1.0.0");
