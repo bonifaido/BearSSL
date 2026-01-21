@@ -56,6 +56,8 @@ EXPORT_SYMBOL(br_rsa_i62_pkcs1_vrfy);
 EXPORT_SYMBOL(br_sha256_init);
 EXPORT_SYMBOL(br_sha256_update);
 EXPORT_SYMBOL(br_sha256_out);
+EXPORT_SYMBOL(br_skey_decoder_init);
+EXPORT_SYMBOL(br_skey_decoder_push);
 
 static int __init bearssl_init(void)
 {
