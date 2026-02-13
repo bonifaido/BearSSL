@@ -25,11 +25,11 @@
 #ifndef INNER_H__
 #define INNER_H__
 
-#include <string.h>
-#include <limits.h>
+#include <linux/string.h>
+#include <linux/version.h>
 
 #include "config.h"
-#include "bearssl.h"
+#include "../inc/bearssl.h"
 
 /*
  * On MSVC, disable the warning about applying unary minus on an
@@ -279,7 +279,7 @@
  * GCC 4.8+, Clang 3.7+ and MSC 2012+.
  */
 #ifndef BR_AES_X86NI
-#if (BR_i386 || BR_amd64) && (BR_GCC_4_8 || BR_CLANG_3_7 || BR_MSC_2012)
+#if ((BR_i386 || BR_amd64) && (BR_GCC_4_8 || BR_CLANG_3_7 || BR_MSC_2012) && !__linux__)
 #define BR_AES_X86NI   1
 #endif
 #endif
@@ -289,7 +289,7 @@
  * GCC 4.4+, Clang 3.7+ and MSC 2005+.
  */
 #ifndef BR_SSE2
-#if (BR_i386 || BR_amd64) && (BR_GCC_4_4 || BR_CLANG_3_7 || BR_MSC_2005)
+#if ((BR_i386 || BR_amd64) && (BR_GCC_4_4 || BR_CLANG_3_7 || BR_MSC_2005) && !__linux__)
 #define BR_SSE2   1
 #endif
 #endif
@@ -925,6 +925,7 @@ BIT_LENGTH(uint32_t x)
 	return k;
 }
 
+#ifndef MIN
 /*
  * Compute the minimum of x and y.
  */
@@ -933,7 +934,9 @@ MIN(uint32_t x, uint32_t y)
 {
 	return MUX(GT(x, y), y, x);
 }
+#endif
 
+#ifndef MAX
 /*
  * Compute the maximum of x and y.
  */
@@ -942,6 +945,7 @@ MAX(uint32_t x, uint32_t y)
 {
 	return MUX(GT(x, y), x, y);
 }
+#endif
 
 /*
  * Multiply two 32-bit integers, with a 64-bit result. This default
@@ -2522,7 +2526,7 @@ int br_ssl_choose_hash(unsigned bf);
 #define BR_TARGETS_X86_DOWN
 #endif
 
-#if BR_GCC || BR_CLANG
+#if (BR_GCC || BR_CLANG) && !__linux__
 BR_TARGETS_X86_UP
 #include <x86intrin.h>
 #include <cpuid.h>
@@ -2541,7 +2545,9 @@ static inline int
 br_cpuid(uint32_t mask_eax, uint32_t mask_ebx,
 	uint32_t mask_ecx, uint32_t mask_edx)
 {
-#if BR_GCC || BR_CLANG
+#ifdef __linux__
+	return 0;
+#elif BR_GCC || BR_CLANG
 	unsigned eax, ebx, ecx, edx;
 
 	if (__get_cpuid(1, &eax, &ebx, &ecx, &edx)) {

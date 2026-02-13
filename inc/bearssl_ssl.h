@@ -25,8 +25,7 @@
 #ifndef BR_BEARSSL_SSL_H__
 #define BR_BEARSSL_SSL_H__
 
-#include <stddef.h>
-#include <stdint.h>
+#include <linux/types.h>
 
 #include "bearssl_block.h"
 #include "bearssl_hash.h"
@@ -584,6 +583,7 @@ typedef struct {
 	} bc;
 	br_ghash gh;
 	unsigned char iv[4];
+	unsigned char key[32];
 	unsigned char h[16];
 #endif
 } br_sslrec_gcm_context;
@@ -788,6 +788,7 @@ typedef struct {
 		br_aes_gen_ctrcbc_keys aes;
 	} bc;
 	unsigned char iv[4];
+	unsigned char key[16];
 	size_t tag_len;
 #endif
 } br_sslrec_ccm_context;
@@ -4015,6 +4016,9 @@ void br_sslio_init(br_sslio_context *ctx,
 	int (*low_write)(void *write_context,
 		const unsigned char *data, size_t len),
 	void *write_context);
+
+extern int
+(*br_sslio_run_until)(br_sslio_context *ctx, unsigned target);
 
 /**
  * \brief Read some application data from a SSL connection.

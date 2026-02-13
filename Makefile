@@ -36,7 +36,11 @@
 !include mk/NMake.mk # \
 !else
 .POSIX:
-include mk/SingleUnix.mk
+include $(PWD)/mk/SingleUnix.mk
+OS := $(shell uname)
+ifeq ($(OS),Linux)
+include $(PWD)/mk/LinuxKM.mk
+endif
 # Extra hack for OpenBSD make.
 ifndef: all
 0: all

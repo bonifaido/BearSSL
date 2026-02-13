@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-#include "inner.h"
+#include "../inner.h"
 
 /* see bearssl_ssl.h */
 void
@@ -121,13 +121,14 @@ run_until(br_sslio_context *ctx, unsigned target)
 
 			buf = br_ssl_engine_recvrec_buf(ctx->engine, &len);
 			rlen = ctx->low_read(ctx->read_context, buf, len);
-			if (rlen < 0) {
-				br_ssl_engine_fail(ctx->engine, BR_ERR_IO);
-				return -1;
+			if (rlen <= 0)
+			{
+				if (rlen != -ERESTARTSYS && rlen != -EAGAIN && rlen != -EWOULDBLOCK)
+					br_ssl_engine_fail(ctx->engine, BR_ERR_IO);
+				return rlen;
 			}
-			if (rlen > 0) {
-				br_ssl_engine_recvrec_ack(ctx->engine, rlen);
-			}
+
+			br_ssl_engine_recvrec_ack(ctx->engine, rlen);
 			continue;
 		}
 
@@ -152,8 +153,13 @@ br_sslio_read(br_sslio_context *ctx, void *dst, size_t len)
 	if (len == 0) {
 		return 0;
 	}
-	if (run_until(ctx, BR_SSL_RECVAPP) < 0) {
-		return -1;
+	int ret = run_until(ctx, BR_SSL_RECVAPP);
+	if (ret < 0) {
+		unsigned state = br_ssl_engine_current_state(ctx->engine);
+		if (state & BR_SSL_CLOSED) {
+			return 0;
+		}
+		return ret;
 	}
 	buf = br_ssl_engine_recvapp_buf(ctx->engine, &alen);
 	if (alen > len) {
